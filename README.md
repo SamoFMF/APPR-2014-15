@@ -4,6 +4,18 @@ Avtor: Samo Metličar
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2014/15.
 
+## Naslov
+
+McDonald's
+
+## Osnovna ideja ter plan dela
+
+Nameravam upoštevati ter primerjati hranilne vrednosti ponudbe, kakor tudi ponudbo samo po različnih državah, kot tudi razširjenost same znamke po Sloveniji in svetu, ter gibanje njihove vrednosti.
+
+## Opis podatkovnih virov
+
+McDonaldsova spletna stran, Wikipedia, Forbes ter drugi viri, ki jih bom še dodal tekom dela (kot tudi same povezave).
+
 ## Tematika
 
 Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
