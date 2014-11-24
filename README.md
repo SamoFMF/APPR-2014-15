@@ -16,6 +16,12 @@ Nameravam upoštevati ter primerjati hranilne vrednosti ponudbe, kakor tudi ponu
 
 McDonaldsova spletna stran, Wikipedia, Forbes ter drugi viri, ki jih bom še dodal tekom dela (kot tudi same povezave).
 
+http://nutrition.mcdonalds.com/getnutrition/nutritionfacts.pdf
+http://nutrition.mcdonalds.com/getnutrition/ingredientslist.pdf
+http://markets.ft.com/research/Markets/Tearsheets/Summary?s=MCD:NYQ
+http://www.macroaxis.com/invest/ratio/MCD--Number-of-Employees
+http://sl.wikipedia.org/wiki/McDonald%27s za države, kjer obratujejo
+
 ## Tematika
 
 Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
