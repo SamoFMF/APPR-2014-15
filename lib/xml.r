@@ -10,11 +10,11 @@ stripByPath <- function(x, path) {
 }
 
 uvozi.obcine <- function() {
-  url.obcine <- "http://sl.wikipedia.org/wiki/McDonald%27s"
-  doc.obcine <- htmlTreeParse(url.obcine, useInternalNodes=TRUE)
+  url.lokacije <- "http://en.wikipedia.org/wiki/List_of_countries_with_McDonald%27s_restaurants"
+  doc.lokacije <- htmlTreeParse(url.obcine, useInternalNodes=TRUE)
   
   # Poiščemo vse tabele v dokumentu
-  tabele <- getNodeSet(doc.obcine, "//table")
+  tabele <- getNodeSet(doc.lokacije, "//table")
   
   # Iz druge tabele dobimo seznam vrstic (<tr>) neposredno pod
   # trenutnim vozliščem

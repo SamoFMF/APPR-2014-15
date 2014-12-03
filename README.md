@@ -21,6 +21,7 @@ http://nutrition.mcdonalds.com/getnutrition/ingredientslist.pdf
 http://markets.ft.com/research/Markets/Tearsheets/Summary?s=MCD:NYQ
 http://www.macroaxis.com/invest/ratio/MCD--Number-of-Employees
 http://sl.wikipedia.org/wiki/McDonald%27s za države, kjer obratujejo
+http://en.wikipedia.org/wiki/List_of_countries_with_McDonald%27s_restaurants
 
 ## Tematika
 
