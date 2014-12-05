@@ -62,6 +62,9 @@ uvozi.lokacije <- function() {
   
   matrika[,2] <- format(as.Date(matrika[,2], "%B %d, %Y"), "%d. %B %Y")
   
+  matrika[,1] <- substr(matrika[,1], 3, length(unlist(strsplit(matrika[,1], split = "", fixed = TRUE))))
+  matrika[21,1] <- substr(matrika[21,1], 3, length(unlist(strsplit(matrika[21,1], split = "", fixed = TRUE))))
+  
   # Podatke iz matrike spravimo v razpredelnico
   return(
     data.frame(Country.or.territory = matrika[,1],
@@ -73,5 +76,6 @@ uvozi.lokacije <- function() {
 }
 
 lokacije <- uvozi.lokacije()
+lokacije <- lokacije[order(lokacije[,1]),]
 
 #Lahko bi tudi odstranili stolpec "Country.or.territory" z lokacije <- lokacije[-1]
