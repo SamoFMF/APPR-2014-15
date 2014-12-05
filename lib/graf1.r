@@ -40,18 +40,19 @@ prvi.graf <- function() {
 drugi.graf <- function() {
   attach(sestavine)
   vrednosti <- c(length(grep("below average", RAZVRSTITEV)), length(grep("average", RAZVRSTITEV)), length(grep("above average", RAZVRSTITEV)))
-  barplot(vrednosti, names.arg = c("below average", "average", "above average"), col = c("grey", "#82c5dc", "red"), xlab = "Razvrstitev \n (Glede na Stevilo sestavin iz seznama, ki so v jedi)", ylab = "Stevilo jedi")
+  barplot(vrednosti, names.arg = c("below average", "average", "above average"), col = c("grey", "#82c5dc", "red"), xlab = "Razvrstitev \n (Glede na stevilo sestavin iz seznama, ki so v jedi)", ylab = "Stevilo jedi")
   detach(sestavine)
 }
 
 tretji.graf <- function() {
   attach(nutrition)
-  plot(0:55, Calories, type = "l")
-  text(grep(max(Calories), Calories), max(Calories), pos = 2, cex = c(0.65, 0.75), Jed[grep(max(Calories), Calories)])
+  plot(0:54, Calories, type = "l", xlab = "Jedi", ylab = "Kalorije")
+  text(grep(max(Calories), Calories), max(Calories), pos = 4, Jed[grep(max(Calories), Calories)])
   text(grep(min(Calories), Calories), min(Calories), pos = 2, Jed[grep(min(Calories), Calories)])
+  detach(nutrition)
 }
 
-pdf("slike/graf1.pdf", paper = "a4r")
+pdf("slike/grafi.pdf", paper = "a4r")
 graf1 <- prvi.graf()
 graf2 <- drugi.graf()
 graf3 <- tretji.graf()

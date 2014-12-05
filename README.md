@@ -20,13 +20,22 @@ http://nutrition.mcdonalds.com/getnutrition/nutritionfacts.pdf
 http://nutrition.mcdonalds.com/getnutrition/ingredientslist.pdf
 http://markets.ft.com/research/Markets/Tearsheets/Summary?s=MCD:NYQ
 http://www.macroaxis.com/invest/ratio/MCD--Number-of-Employees
-http://sl.wikipedia.org/wiki/McDonald%27s za države, kjer obratujejo
 http://en.wikipedia.org/wiki/List_of_countries_with_McDonald%27s_restaurants
 
 ## Tematika
 
 Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
 napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+
+## Uporaba
+
+Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/grafi.pdf`).
+
+## Možne težave
+
+V primeru, da program ne deluje je priporočeno, da se v `lib/xml.r` odstrani,
+kar je označeno (Piše OD TUKAJ; DO TUKAJ), in bi moral biti problem rešen. Problem
+bi verjetno nastopil zaradi jezika datumov.
 
 ## Program
 

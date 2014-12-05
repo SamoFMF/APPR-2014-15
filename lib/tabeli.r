@@ -42,3 +42,8 @@ ustvari.nutrition <- function() {
 
 sestavine <- ustvari.sestavine()
 nutrition <- ustvari.nutrition()
+
+rownames(sestavine) <- sestavine$JED
+#Rownames za nutrition ne deluje, ker se nekateri elementi ponovijo 2-krat. Te bom še v prihodnosti odstranil ter dodal nove.
+
+#Lahko bi tudi odstranili stolpec "JED" z sestavine <- sestavine[-1]
