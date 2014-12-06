@@ -31,12 +31,6 @@ napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
 
 Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/grafi.pdf`).
 
-## Možne težave
-
-V primeru, da program ne deluje je priporočeno, da se v `lib/xml.r` odstrani,
-kar je označeno (Piše OD TUKAJ; DO TUKAJ), in bi moral biti problem rešen. Problem
-bi verjetno nastopil zaradi jezika datumov.
-
 ## Program
 
 Glavni program se nahaja v datoteki `projekt.r`. Ko ga poženemo, se izvedejo

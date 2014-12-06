@@ -1,6 +1,7 @@
 # Uvoz s spletne strani
 
 library(XML)
+Sys.setlocale("LC_TIME", "C")
 
 # Vrne vektor nizov z odstranjenimi začetnimi in končnimi "prazninami" (whitespace)
 # iz vozlišč, ki ustrezajo podani poti.
@@ -45,22 +46,7 @@ uvozi.lokacije <- function() {
   matrika[89,2] <- "October 13, 1996"
   matrika[117,2] <- "August 1, 2011"
   
-  ####### V PRIMERU NE DELOVANJA ODSTRANI OD TUKAJ
-  #Spremenimo iz angleških imen v slovenska, ker R zazna datume v sloveščini // POIZKUSI POPRAVITI IN IZBRISATI TA DEL //
-  for(i in 1:length(matrika[,2])){
-    vmesno.stanje <- unlist(strsplit(matrika[,2][i], split = " ", fixed = TRUE))
-    if("January" %in% vmesno.stanje){matrika[,2][i] <- gsub("January", "Januar", matrika[,2][i])}
-    if("February" %in% vmesno.stanje){matrika[,2][i] <- gsub("February", "Februar", matrika[,2][i])}
-    if("March" %in% vmesno.stanje){matrika[,2][i] <- gsub("March", "Marec", matrika[,2][i])}
-    if("May" %in% vmesno.stanje){matrika[,2][i] <- gsub("May", "Maj", matrika[,2][i])}
-    if("June" %in% vmesno.stanje){matrika[,2][i] <- gsub("June", "Junij", matrika[,2][i])}
-    if("July" %in% vmesno.stanje){matrika[,2][i] <- gsub("July", "Julij", matrika[,2][i])}
-    if("August" %in% vmesno.stanje){matrika[,2][i] <- gsub("August", "Avgust", matrika[,2][i])}
-    if("October" %in% vmesno.stanje){matrika[,2][i] <- gsub("October", "Oktober", matrika[,2][i])}
-  }
-  ####### PA VSE DO TUKAJ
-  
-  matrika[,2] <- format(as.Date(matrika[,2], "%B %d, %Y"), "%d. %B %Y")
+  matrika[,2] <- format(as.Date(matrika[,2], "%B %d, %Y"), "%d.%m.%Y")
   
   matrika[,1] <- substr(matrika[,1], 3, length(unlist(strsplit(matrika[,1], split = "", fixed = TRUE))))
   matrika[21,1] <- substr(matrika[21,1], 3, length(unlist(strsplit(matrika[21,1], split = "", fixed = TRUE))))
