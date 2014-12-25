@@ -12,8 +12,9 @@ ustvari.sestavine <- function() {
   razvrstitev[St.sestavin==2|St.sestavin==3] <- "average"
   razvrstitev[St.sestavin<2] <- "below average"
   Razvrstitev <- factor(razvrstitev, levels = kategorije, ordered = TRUE)
-  return(data.frame(JED = Jed, BEEF.PATTY, SHREDDED.LETTUCE, CHEESE, PICKLE.SLICES, REGULAR.BUN, MCCHICKEN.PATTY, ST.SESTAVIN.S.SEZNAMA = St.sestavin, RAZVRSTITEV = Razvrstitev))
+  koncni <- data.frame(JED = Jed, BEEF.PATTY, SHREDDED.LETTUCE, CHEESE, PICKLE.SLICES, REGULAR.BUN, MCCHICKEN.PATTY, ST.SESTAVIN.S.SEZNAMA = St.sestavin, RAZVRSTITEV = Razvrstitev)
   detach(sestavine)
+  return(koncni)
 }
 
 
@@ -36,8 +37,9 @@ ustvari.nutrition <- function() {
   
   Razvrstitev <- factor(razvrstitev, levels = kategorije, ordered = TRUE)
   
-  return(data.frame(Jed, Serving.Size..g., Calories, Calories.From.Fat, Total.Fat..g., Part.of.Daily.Value, Saturated.Fat..g., Part.of.Daily.Value.1, Trans.Fat..g., Cholesterol..mg., Part.of.Daily.Value.2, Sodium..mg., Part.of.Daily.Value.3, Carbohydrates..g., Part.of.Daily.Value.4, Dietary.Fiber..g., Part.of.Daily.Value.5, Sugars..g., Protein..g., Vitamin.A, Vitamin.C, Calcium, Iron, Calories.per.Serving.Size = Razvrstitev))
+  koncni <- data.frame(Jed, Serving.Size..g., Calories, Calories.From.Fat, Total.Fat..g., Part.of.Daily.Value, Saturated.Fat..g., Part.of.Daily.Value.1, Trans.Fat..g., Cholesterol..mg., Part.of.Daily.Value.2, Sodium..mg., Part.of.Daily.Value.3, Carbohydrates..g., Part.of.Daily.Value.4, Dietary.Fiber..g., Part.of.Daily.Value.5, Sugars..g., Protein..g., Vitamin.A, Vitamin.C, Calcium, Iron, Calories.per.Serving.Size = Razvrstitev)
   detach(nutrition)
+  return(koncni)
 }
 
 sestavine <- ustvari.sestavine()
