@@ -21,7 +21,7 @@ Za temo sem izbral McDonald's, obravnaval pa bom njihovo ponudbo, razširjenost 
 
 Iz \href{http://nutrition.mcdonalds.com/getnutrition/nutritionfacts.pdf}{McDonalds Nutrition Facts} sem dobil prvo tabelo, ki vsebuje hranilne vrednosti njihovih jedi. Datoteka je bila v PDF formatu ter večina imen je bila več-vrstičnih, kar je povzročalu probleme tako Excelu kot Wordu. Ko sem prenesel vse podatke v Excel, sem shranil tabelo kot CSV datoteko v \verb|podatki/nutrition.csv|. Nato sem se lotil druge tabele, ki sem jo pridobil iz \href{http://nutrition.mcdonalds.com/getnutrition/ingredientslist.pdf}{McDonalds Ingredient List}. Ta tabela mi je povzročala malce več težav in po predlogu asistenta sem se odločil, da jo bom pretvoril v TRUE/FALSE tabelo, kar sem storil s pomocjo R. Ker pa se vecina jedi ne pojavla pogosto, sem moral močno zožiti izbor jedi, zato je tabela manjših razsegov. \par
 
-Obe tabeli sem uvozil s funkcijama v "uvoz/uvoz.r" ter ju na to s funkcijami v \verb|lib/tabeli.r| še dopolnil ter pretvoril v željeni tabeli. Sledilo je ustvarjanje grafov s pomočjo funkcij v \verb|lib/graf1.r|, ki izriše vse tri grafe v PDF dokument "slike/grafi.pdf". \par
+Obe tabeli sem uvozil s funkcijama v "uvoz/uvoz.r" ter ju na to s funkcijami v \verb|lib/tabeli.r| še dopolnil ter pretvoril v željeni tabeli. Sledilo je ustvarjanje grafov s pomočjo funkcij v \verb|lib/graf1.r|, ki izriše vse tri grafe v PDF dokument \verb|slike/grafi.pdf|. \par
 
 Na koncu je sledil še uvoz podatkov iz Wikipedije, kjer sem dobil podatke o državah, kjer McDonalds obratuje itd. Po uvozu teh podatkov sem še nekoliko uredil tabelo ter spremenil nekatere vrednosti. Na koncu pa sem še pretvoril datume iz niza v "Date" ter jih izpisal v nam bolj prijazni obliki.
 
