@@ -8,4 +8,4 @@ test1 <- !row.names(lokacije) %in% svet$admin
 
 barve <- ifelse(crne, "black", "yellow")
 
-plot(svet, col = barve)
+# plot(svet, col = barve)
