@@ -52,9 +52,13 @@ uvozi.lokacije <- function() {
   #Popravimo/posodobimo nekatera imena držav
   matrika[17, 1] <- "United Kingdom"
   matrika[44, 1] <- "Macau"
-  matrika[45, 1] <- "Serbia"
+  matrika[45, 1] <- "Republic of Serbia"
   matrika[48, 1] <- "Russia"
   matrika[56, 1] <- "Czech Republic"
+  
+  #Spremembe imen zaradi zemljevida
+  matrika[1, 1] <- "United States of America"
+  matrika[19, 1] <- "The Bahamas"
   
   # Podatke iz matrike spravimo v razpredelnico
   return(
