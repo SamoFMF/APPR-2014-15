@@ -33,31 +33,6 @@ preuredi <- function(podatki, zemljevid) {
 }
 
 
-# Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
-# druzine <- preuredi(druzine, obcine)
-
-# Izračunamo povprečno velikost družine.
-# druzine$povprecje <- apply(druzine[1:4], 1, function(x) sum(x*(1:4))/sum(x))
-# min.povprecje <- min(druzine$povprecje, na.rm=TRUE)
-# max.povprecje <- max(druzine$povprecje, na.rm=TRUE)
-
-# n = 100
-# barve = topo.colors(n)[1+(n-1)*(druzine$povprecje-min.povprecje)/(max.povprecje-min.povprecje)]
-# plot(obcine, col = barve)
-
-# dev.off()
-
-# crne <- !svet$admin %in% row.names(lokacije)
-
-# test <- row.names(lokacije) %in% svet$admin
-# test1 <- !row.names(lokacije) %in% svet$admin
-
-# barve <- ifelse(crne, "black", "yellow")
-
-# Nekoliko popravimo imena, da se bodo ujemala
-
-
-# lokacije <- lokacije[-c(1, 2, 4, 8, 22, 31, 34, 35, 38, 40, 41, 44, 50, 54, 59, 62, 64, 65, 66, 67, 70, 76, 89, 92, 93, 95, 96, 116), ]
 lokacije <- lokacije[-c(34, 38, 40, 65, 67, 89), ]
 
 lokacije <- preuredi(lokacije, svet)
@@ -112,7 +87,6 @@ drzave <- drzave[order(row.names(drzave)), ]
 povrsina <- read.csv("podatki/povrsina.csv", row.names=2, sep=";")
 row.names(povrsina)[c(3, 106)] <- c("United States of America", "Republic of Serbia")
 povrsina <- povrsina[-grep(TRUE, (!row.names(povrsina) %in% svet$admin)), ]
-# povrsina <- povrsina[-c(38, 129, 130, 139, 145, 147, 148, 150, 165, 169, 186, 189), ]
 povrsina <- preuredi(povrsina, svet)
 povrsina <- povrsina[order(row.names(povrsina)), ]
 
@@ -123,15 +97,8 @@ drzave$Area[slabe] <- 0
 lok1 <- lokacije[order(row.names(lokacije)), ]
 
 vsa.imena <- (drzave$Area > 500000) & (lok1$Number.of.currently.operating.outlets > 0)
-celo.ime <- (drzave$Area > 2000000) & (lok1$Number.of.currently.operating.outlets > 0)
-kratko.ime <- (drzave$Area > 500000) & (lok1$Number.of.currently.operating.outlets > 0) & (drzave$Area <= 2000000)
-
-cela.imena <- row.names(drzave)[celo.ime]
-kratka.imena <- drzave$country[kratko.ime]
 koordinate <- drzave[vsa.imena, c("long", "lat")]
 imena <- drzave[vsa.imena, ]
-# imena$Graf <- as.character(imena$country)
-# imena$Graf[imena$Area > 2000000] <- as.character(row.names(imena)[imena$Area > 2000000])
 
 
 cat("Rišem zemljevid odprtja prve trgovine...\n")
