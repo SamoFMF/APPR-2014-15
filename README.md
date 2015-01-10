@@ -29,7 +29,7 @@ napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
 
 ## Uporaba
 
-Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/graf1.pdf`, `slike/graf2.pdf`, `slike/graf3.pdf`) ter zemljevid (shranjen v `slike/zemljevid2.pdf`), da dobimo še drugi zemljevid moramo označiti vrstice 8-12 ter klikniti `Run` (shrani se nam v `slike/zemljevid1.pdf`).
+Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/graf1.pdf`, `slike/graf2.pdf`, `slike/graf3.pdf`) ter zemljevid (shranjen v `slike/zemljevid2.pdf`), da dobimo še drugi zemljevid moramo označiti vrstice 11-15 ter klikniti `Run` (shrani se nam v `slike/zemljevid1.pdf`).
 
 ## Program
 
