@@ -29,7 +29,7 @@ napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
 
 ## Uporaba
 
-Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/grafi.pdf`).
+Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/graf1.pdf`, `slike/graf2.pdf`, `slike/graf3.pdf`) ter zemljevid (shranjen v `slike/zemljevid2.pdf`), da dobimo še drugi zemljevid moramo označiti vrstice 8-12 ter klikniti `Run` (shrani se nam v `slike/zemljevid1.pdf`).
 
 ## Program
 
@@ -40,7 +40,7 @@ programi, ki ustrezajo drugi, tretji in četrti fazi projekta:
 * analiza in vizualizacija podatkov: `vizualizacija/vizualizacija.r`
 * napredna analiza podatkov: `analiza/analiza.r`
 
-Vnaprej pripravljene funkcije se nahajajo v datotekah v mapi `lib/`. Podatkovni
+Vnaprej pripravljene funkcije se nahajajo v datotekah v mapi `lib/` ter `vizualizacija`. Podatkovni
 viri so v mapi `podatki/`. Slike, ki jih program naredi, se shranijo v mapo
 `slike/`. Zemljevidi v obliki SHP, ki jih program pobere, se shranijo v mapo
 `zemljevid/`.

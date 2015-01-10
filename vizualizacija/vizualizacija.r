@@ -10,13 +10,13 @@ cat("Uvažam zemljevid...\n")
 #                           "obcine", "OB/OB.shp", mapa = "zemljevid",
 #                           encoding = "Windows-1250")
 
-svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip",
-                        "svet", "ne_110m_admin_0_countries.shp", mapa = "zemljevid",
+svet <- uvozi.zemljevid("http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip",
+                        "svet", "ne_50m_admin_0_countries.shp", mapa = "zemljevid",
                         encoding = "Windows-1252")
 
 # Funkcija, ki podatke preuredi glede na vrstni red v zemljevidu
 preuredi <- function(podatki, zemljevid) {
-  nove.drzave <- svet$admin[!svet$admin %in% row.names(lokacije)]
+  nove.drzave <- svet$admin[!svet$admin %in% row.names(podatki)]
   manjkajo <- ! nove.drzave %in% rownames(podatki)
   M <- as.data.frame(matrix(nrow=sum(manjkajo), ncol=length(podatki)))
   names(M) <- names(podatki)
@@ -31,6 +31,7 @@ preuredi <- function(podatki, zemljevid) {
   }
   return(out)
 }
+
 
 # Preuredimo podatke, da jih bomo lahko izrisali na zemljevid.
 # druzine <- preuredi(druzine, obcine)
@@ -53,7 +54,11 @@ preuredi <- function(podatki, zemljevid) {
 
 # barve <- ifelse(crne, "black", "yellow")
 
-lokacije <- lokacije[-c(1, 2, 4, 8, 22, 31, 34, 35, 38, 40, 41, 44, 50, 54, 59, 62, 64, 65, 66, 67, 70, 76, 89, 92, 93, 95, 96, 116), ]
+# Nekoliko popravimo imena, da se bodo ujemala
+
+
+# lokacije <- lokacije[-c(1, 2, 4, 8, 22, 31, 34, 35, 38, 40, 41, 44, 50, 54, 59, 62, 64, 65, 66, 67, 70, 76, 89, 92, 93, 95, 96, 116), ]
+lokacije <- lokacije[-c(34, 38, 40, 65, 67, 89), ]
 
 lokacije <- preuredi(lokacije, svet)
 
@@ -64,7 +69,7 @@ svet$stevilo.trgovin <- lokacije$Number.of.currently.operating.outlets
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid števila trgovin...\n")
-pdf("slike/stevilo_trgovin_po_svetu.pdf", width=6, height=4)
+pdf("slike/zemljevid1.pdf", width=6, height=4)
 
 spplot(svet, "stevilo.trgovin", col.regions = rainbow(16))
 
@@ -83,19 +88,64 @@ ni.trgovin <- is.na(lokacije$Date)
 #                 ifelse(as.integer(format(as.Date(lokacije$Date, "%d.%m.%Y"), "%Y"))>=1960, rgb(1, 0, 1, (as.integer(format(as.Date(lokacije$Date, "%d.%m.%Y"), "%Y")) - 1959)/10),
 #                 rgb(1, 1, 0))))))))
 
+
+
 barve <- ifelse(ni.trgovin, "black", "white")
 barve[1] <- rgb(1, 1, 0)
 barve[2:3] <- rgb(1, 0, 1, (as.integer(format(as.Date(lokacije$Date[2:3], "%d.%m.%Y"), "%Y")) - 1959)/10)
-barve[4:21] <- rgb(1, 0.843137, 0, (as.integer(format(as.Date(lokacije$Date[4:21], "%d.%m.%Y"), "%Y")) - 1969)/10)
-barve[22:39] <- rgb(0.5, 0.5, 0, (as.integer(format(as.Date(lokacije$Date[22:39], "%d.%m.%Y"), "%Y")) - 1979)/10)
-barve[40:86] <- rgb(0, 0, 1, (as.integer(format(as.Date(lokacije$Date[40:86], "%d.%m.%Y"), "%Y")) - 1989)/10)
-barve[87] <- rgb(0, 1, 0, (as.integer(format(as.Date(lokacije$Date[87], "%d.%m.%Y"), "%Y")) - 1999)/10)
-barve[88:90] <- rgb(1, 0, 0, (as.integer(format(as.Date(lokacije$Date[88:90], "%d.%m.%Y"), "%Y")) - 2009)/10)
+barve[4:26] <- rgb(1, 0.843137, 0, (as.integer(format(as.Date(lokacije$Date[4:26], "%d.%m.%Y"), "%Y")) - 1969)/10)
+barve[27:47] <- rgb(0.5, 0.5, 0, (as.integer(format(as.Date(lokacije$Date[27:47], "%d.%m.%Y"), "%Y")) - 1979)/10)
+barve[48:106] <- rgb(0, 0, 1, (as.integer(format(as.Date(lokacije$Date[48:106], "%d.%m.%Y"), "%Y")) - 1989)/10)
+barve[107:109] <- rgb(0, 1, 0, (as.integer(format(as.Date(lokacije$Date[107:109], "%d.%m.%Y"), "%Y")) - 1999)/10)
+barve[110:112] <- rgb(1, 0, 0, (as.integer(format(as.Date(lokacije$Date[110:112], "%d.%m.%Y"), "%Y")) - 2009)/10)
 
 barve <- barve[order(row.names(lokacije))]
 svet <- svet[order(svet$admin), ]
 
+drzave <- read.csv("podatki/drzave_sveta_2.csv", row.names=4, sep=";")
+drzave <- drzave[order(row.names(drzave)), ]
+row.names(drzave)[c(194, 234)] <- c("Republic of Serbia", "United States of America")
+drzave <- drzave[-grep(TRUE, (!row.names(drzave) %in% svet$admin)), ]
+drzave <- preuredi(drzave, svet)
+drzave <- drzave[order(row.names(drzave)), ]
+
+povrsina <- read.csv("podatki/povrsina.csv", row.names=2, sep=";")
+row.names(povrsina)[c(3, 106)] <- c("United States of America", "Republic of Serbia")
+povrsina <- povrsina[-grep(TRUE, (!row.names(povrsina) %in% svet$admin)), ]
+# povrsina <- povrsina[-c(38, 129, 130, 139, 145, 147, 148, 150, 165, 169, 186, 189), ]
+povrsina <- preuredi(povrsina, svet)
+povrsina <- povrsina[order(row.names(povrsina)), ]
+
+drzave$Area <- povrsina$Area
+slabe <- is.na(drzave$Area)
+levels(drzave$Area) <- c(levels(drzave$Area), 0)
+drzave$Area[slabe] <- 0
+lok1 <- lokacije[order(row.names(lokacije)), ]
+
+vsa.imena <- (drzave$Area > 500000) & (lok1$Number.of.currently.operating.outlets > 0)
+celo.ime <- (drzave$Area > 2000000) & (lok1$Number.of.currently.operating.outlets > 0)
+kratko.ime <- (drzave$Area > 500000) & (lok1$Number.of.currently.operating.outlets > 0) & (drzave$Area <= 2000000)
+
+cela.imena <- row.names(drzave)[celo.ime]
+kratka.imena <- drzave$country[kratko.ime]
+koordinate <- drzave[vsa.imena, c("long", "lat")]
+imena <- drzave[vsa.imena, ]
+# imena$Graf <- as.character(imena$country)
+# imena$Graf[imena$Area > 2000000] <- as.character(row.names(imena)[imena$Area > 2000000])
+
+
 cat("Rišem zemljevid odprtja prve trgovine...\n")
-pdf("slike/stevilo_trgovin_po_svetu.pdf", width=6, height=4)
+pdf("slike/zemljevid2.pdf", width=6, height=4)
 plot(svet, col = barve)
+
+text(coordinates(imena[c("long", "lat")]),
+     label = ifelse(imena$Area>2000000, as.character(row.names(imena)), ifelse(imena$Area>1000000, as.character(imena$country), "")),
+     cex = 0.25, col= rgb(0, 0.5, 0))
+
+
+points(coordinates(imena[imena$Area<1000000, c("long", "lat")]),
+       col = "grey",
+       pch = 19,
+       cex = 0.2)
+
 dev.off()
