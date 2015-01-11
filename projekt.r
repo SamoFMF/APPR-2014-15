@@ -7,13 +7,6 @@ source("lib/xml.r", encoding="UTF-8")
 # 3. faza: Analiza in vizualizacija podatkov
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 
-# Potrebno naknadno zagnati z "Run", če ne ne bo odprlo 'slike/zemljevid1.pdf'!
-pdf("slike/zemljevid1.pdf", width=6, height=4)
-
-spplot(svet, "stevilo.trgovin", col.regions = rainbow(16))
-
-dev.off()
-
 # 4. faza: Napredna analiza podatkov
 #source("analiza/analiza.r")
 

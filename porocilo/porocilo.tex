@@ -17,7 +17,7 @@ Analiza podatkov s programom R}
 
 \section{Izbira teme}
 
-Za temo sem izbral McDonald's, obravnaval pa bom njihovo ponudbo, razširjenost ter delovanje podjetja samega.
+Za temo sem izbral McDonald's, obravnaval pa bom njihovo ponudbo, raz\-šir\-je\-nost ter delovanje podjetja samega.
 
 \section{Obdelava, uvoz in čiščenje podatkov}
 
@@ -36,9 +36,9 @@ Na koncu je sledil še uvoz podatkov iz Wikipedije, kjer sem dobil podatke o dr�
 \section{Analiza in vizualizacija podatkov}
 
 
-V tretji fazi sem uvozil zemljevid sveta s spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}, ki jo je svetoval asistent ter se lotil spreminjanja tabel, ki so mi bile na voljo, da so ustrezale le-temu zemljevidu. Uvozni program najdemo v \verb|lib/uvozi.zemljevid.r|. \par
+V tretji fazi sem uvozil zemljevid sveta s spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}, ki jo je svetoval asistent ter se lotil spreminjanja tabel, ki so mi bile na voljo, da so ustrezale le-temu zemljevidu. V \verb|lib/uvozi.zemljevid.r| najdemo program, ki nam uvozi le-tega. \par
 
-Nato pa sem spremenil ter dodelal program \verb|vizualizacija/vizualizacija.r|, ki shrani zemljevid s spleta ter ga preuredi v dva zemljevida. Prvi prikazuje, koliko McDonaldsov je v posameznih državah po svetu, drugi pa kdaj je bila odprta prva restavracija v tisti državi.
+Nato pa sem program \verb|vizualizacija/vizualizacija.r| spremenil ter dodelal, da shrani zemljevid s spleta ter ga preuredi v dva zemljevida. Prvi prikazuje, koliko McDonaldsov je v posameznih državah po svetu, drugi pa kdaj je bila odprta prva restavracija v tisti državi.
 
 Prvo sem se lotil števila restavracij po državah, tako da sem popravil ter uskladil imena z zemljevida ter mojih podatkov, da sta se ujemala v številu držav, kot tudi katere sta vsebovala. Nato pa sem izrisal graf s funkcijo \verb|spplot|. \par
 

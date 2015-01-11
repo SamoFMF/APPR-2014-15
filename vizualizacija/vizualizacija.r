@@ -46,7 +46,7 @@ svet$stevilo.trgovin <- lokacije$Number.of.currently.operating.outlets
 cat("Rišem zemljevid števila trgovin...\n")
 pdf("slike/zemljevid1.pdf", width=6, height=4)
 
-spplot(svet, "stevilo.trgovin", col.regions = rainbow(16))
+print(spplot(svet, "stevilo.trgovin", col.regions = rainbow(16), main = "Število restavracij po posameznih državah"))
 
 dev.off()
 
@@ -77,16 +77,18 @@ barve[110:112] <- rgb(1, 0, 0, (as.integer(format(as.Date(lokacije$Date[110:112]
 barve <- barve[order(row.names(lokacije))]
 svet <- svet[order(svet$admin), ]
 
-drzave <- read.csv("podatki/drzave_sveta_2.csv", row.names=4, sep=";")
+drzave <- read.csv("podatki/drzave_sveta_2.csv", row.names=4, sep=";", fileEncoding = "Windows-1252")
 drzave <- drzave[order(row.names(drzave)), ]
-row.names(drzave)[c(194, 234)] <- c("Republic of Serbia", "United States of America")
-drzave <- drzave[-grep(TRUE, (!row.names(drzave) %in% svet$admin)), ]
+row.names(drzave)[row.names(drzave) == "Serbia"] <- "Republic of Serbia"
+row.names(drzave)[row.names(drzave) == "United States"] <- "United States of America"
+drzave <- drzave[row.names(drzave) %in% svet$admin, ]
 drzave <- preuredi(drzave, svet)
 drzave <- drzave[order(row.names(drzave)), ]
 
-povrsina <- read.csv("podatki/povrsina.csv", row.names=2, sep=";")
-row.names(povrsina)[c(3, 106)] <- c("United States of America", "Republic of Serbia")
-povrsina <- povrsina[-grep(TRUE, (!row.names(povrsina) %in% svet$admin)), ]
+povrsina <- read.csv("podatki/povrsina.csv", row.names=2, sep=";", fileEncoding = "Windows-1252")
+row.names(povrsina)[row.names(povrsina) == "Serbia"] <- "Republic of Serbia"
+row.names(povrsina)[row.names(povrsina) == "United States"] <- "United States of America"
+povrsina <- povrsina[row.names(povrsina) %in% svet$admin, ]
 povrsina <- preuredi(povrsina, svet)
 povrsina <- povrsina[order(row.names(povrsina)), ]
 
@@ -99,15 +101,25 @@ lok1 <- lokacije[order(row.names(lokacije)), ]
 vsa.imena <- (drzave$Area > 500000) & (lok1$Number.of.currently.operating.outlets > 0)
 koordinate <- drzave[vsa.imena, c("long", "lat")]
 imena <- drzave[vsa.imena, ]
+postrani <- imena[c(1, 14), ]
+imena <- imena[-c(1, 14), ]
+row.names(imena)[row.names(imena) == "Saudi Arabia"] <- "Saudi\nArabia"
 
 
 cat("Rišem zemljevid odprtja prve trgovine...\n")
 pdf("slike/zemljevid2.pdf", width=6, height=4)
 plot(svet, col = barve)
 
+title(main = "Države po datumih odprtja prve restavracije")
+
 text(coordinates(imena[c("long", "lat")]),
      label = ifelse(imena$Area>2000000, as.character(row.names(imena)), ifelse(imena$Area>1000000, as.character(imena$country), "")),
-     cex = 0.25, col= rgb(0, 0.5, 0))
+     cex = 0.25, col = rgb(0, 0.5, 0))
+
+#Argentina & Peru
+text(coordinates(postrani[c("long", "lat")]),
+     label = ifelse(row.names(postrani) == "Argentina", as.character(row.names(postrani)), as.character(postrani$country)),
+     cex = 0.25, srt = -90, col = rgb(0, 0.5, 0))
 
 
 points(coordinates(imena[imena$Area<1000000, c("long", "lat")]),
