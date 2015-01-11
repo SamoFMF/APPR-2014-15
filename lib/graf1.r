@@ -38,7 +38,7 @@ tretji.graf <- function() {
   attach(nutrition)
   
   urejeni <- nutrition[order(Calories, decreasing=TRUE),]
-  plot(c(0, 16), c(-80, 760), type="n", xlab = "Jedi", ylab = "Kalorije")
+  plot(c(0, 16), c(-80, 760), type="n", xlab = "Jedi", ylab = "Kalorije", axes = FALSE)
   abline(h = 0)
   abline(v = 0)
   
