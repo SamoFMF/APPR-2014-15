@@ -42,13 +42,18 @@ lokacije$Number.of.currently.operating.outlets[ni.trgovin] <- 0
 
 svet$stevilo.trgovin <- lokacije$Number.of.currently.operating.outlets
 
-svet$stevilo.trgovin <- factor(svet$stevilo.trgovin)
+USA <- svet$admin == "United States of America"
+svet$stevilo.trgovin[svet$stevilo.trgovin == 0] <- NA
 
 # Narišimo zemljevid v PDF.
 cat("Rišem zemljevid števila trgovin...\n")
 pdf("slike/zemljevid1.pdf", width=6, height=4)
 
-print(spplot(svet, "stevilo.trgovin", col.regions = topo.colors(length(levels(svet$stevilo.trgovin))), main = "Število restavracij po posameznih državah"))
+print(spplot(svet[!USA,], "stevilo.trgovin", col.regions = topo.colors(100),
+             main = "Število restavracij po posameznih državah",
+             sp.layout = list(list("sp.polygons", svet[USA,], fill = "red"),
+                              list("sp.text", coordinates(svet[USA,]),
+                                   svet$stevilo.trgovin[USA], cex = 0.5))))
 
 dev.off()
 
