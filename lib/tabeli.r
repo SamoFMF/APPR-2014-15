@@ -1,4 +1,4 @@
-source("uvoz/uvoz.r")
+# source("uvoz/uvoz.r")
 
 ustvari.sestavine <- function() {
   attach(sestavine)

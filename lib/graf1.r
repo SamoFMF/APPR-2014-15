@@ -1,4 +1,4 @@
-source("lib/tabeli.r")
+# source("lib/tabeli.r")
 
 prvi.graf <- function() {
   attach(nutrition)
