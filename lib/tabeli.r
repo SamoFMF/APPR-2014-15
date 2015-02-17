@@ -6,11 +6,11 @@ ustvari.sestavine <- function() {
   St.sestavin <- apply(sestavine[-1], 1, sum)
   
   #V katere kategorije vse jih delimo
-  kategorije <- c("below average", "average", "above average")
+  kategorije <- c("podpovprečno", "povprečno", "nadpovprečno")
   razvrstitev <- character(length(St.sestavin))
-  razvrstitev[St.sestavin>3] <- "above average"
-  razvrstitev[St.sestavin==2|St.sestavin==3] <- "average"
-  razvrstitev[St.sestavin<2] <- "below average"
+  razvrstitev[St.sestavin>3] <- "nadpovprečno"
+  razvrstitev[St.sestavin==2|St.sestavin==3] <- "povprečno"
+  razvrstitev[St.sestavin<2] <- "podpovprečno"
   Razvrstitev <- factor(razvrstitev, levels = kategorije, ordered = TRUE)
   koncni <- data.frame(JED = Jed, BEEF.PATTY, SHREDDED.LETTUCE, CHEESE, PICKLE.SLICES, REGULAR.BUN, MCCHICKEN.PATTY, ST.SESTAVIN.S.SEZNAMA = St.sestavin, RAZVRSTITEV = Razvrstitev)
   detach(sestavine)
@@ -27,13 +27,13 @@ ustvari.nutrition <- function() {
   #Število kalorij glede na maso jedi
   Razmerje <- Calories / Serving.Size..g.
   
-  kategorije <- c("najmanjse", "nizko", "srednje", "visoko", "najvecje")
+  kategorije <- c("najmanjše", "nizko", "srednje", "visoko", "največje")
   razvrstitev <- character(length(Razmerje))
   razvrstitev[Razmerje>(mean(Razmerje)+sd(Razmerje))] <- "visoko"
   razvrstitev[Razmerje<=(mean(Razmerje)+sd(Razmerje))&Razmerje>=(mean(Razmerje)-sd(Razmerje))] <- "srednje"
   razvrstitev[Razmerje<(mean(Razmerje)-sd(Razmerje))] <- "nizko"
-  razvrstitev[max(Razmerje)] <- "najvecje"
-  razvrstitev[min(Razmerje)] <- "najmanjse"
+  razvrstitev[max(Razmerje)] <- "največje"
+  razvrstitev[min(Razmerje)] <- "najmanjše"
   
   Razvrstitev <- factor(razvrstitev, levels = kategorije, ordered = TRUE)
   

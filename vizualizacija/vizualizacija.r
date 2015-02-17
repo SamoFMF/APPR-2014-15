@@ -2,7 +2,6 @@
 
 # Uvozimo funkcijo za pobiranje in uvoz zemljevida.
 source("lib/uvozi.zemljevid.r")
-source("lib/xml.r", encoding="UTF-8")
 
 # Uvozimo zemljevid.
 cat("Uvažam zemljevid...\n")
@@ -111,6 +110,7 @@ imena <- drzave[vsa.imena, ]
 postrani <- imena[c(1, 14), ]
 imena <- imena[-c(1, 14), ]
 row.names(imena)[row.names(imena) == "Saudi Arabia"] <- "Saudi\nArabia"
+imena$slo <- c("Avstralija", "Brazilija", "Kanada", "", "Kitajska", "", "", "", "Indija", "", "", "", "Rusija", "Saudova\n Arabija", "", "", "", "", "", "Združene države\nAmerike", "")
 
 
 cat("Rišem zemljevid odprtja prve trgovine...\n")
@@ -120,18 +120,30 @@ plot(svet, col = barve)
 title(main = "Države po datumih odprtja prve restavracije")
 
 text(coordinates(imena[c("long", "lat")]),
-     label = ifelse(imena$Area>2000000, as.character(row.names(imena)), ifelse(imena$Area>1000000, as.character(imena$country), "")),
-     cex = 0.25, col = rgb(0, 0.5, 0))
+     label = ifelse(imena$Area>2000000, as.character(imena$slo), ifelse(imena$Area>1000000, as.character(imena$country), "")),
+     cex = ifelse(row.names(imena) == "Saudi\nArabia", 0.2, 0.25),
+     col = ifelse(row.names(imena) == "Indonesia", "red", 
+                  ifelse(imena$slo == "", "black",
+                         ifelse((row.names(imena) == "India") | (row.names(imena) == "Saudi\nArabia"), "red",
+                                ifelse(row.names(imena) == "Canada", "gold", rgb(0, 0.5, 0))))))
 
-#Argentina & Peru
+# Argentina & Peru
 text(coordinates(postrani[c("long", "lat")]),
      label = ifelse(row.names(postrani) == "Argentina", as.character(row.names(postrani)), as.character(postrani$country)),
-     cex = 0.25, srt = -90, col = rgb(0, 0.5, 0))
+     cex = c(0.2, 0.25), srt = -90, col = c("red", "black"))
 
 
 points(coordinates(imena[imena$Area<1000000, c("long", "lat")]),
-       col = "grey",
+       col = "red",
        pch = 19,
        cex = 0.2)
+
+legend("bottomleft",
+       legend = c("1950-1959", "1960-1969", "1970-1979", "1980-1989", "1990-1999", "2000-2009", "2010-2015", "Še ni odprta"),
+       col = c(rgb(1, 1, 0), rgb(1, 0, 1), rgb(1, 0.843137, 0), rgb(0.5, 0.5, 0), rgb(0, 0, 1), rgb(0, 1, 0), rgb(1, 0, 0), "black"),
+       lty = c("solid", "solid", "solid", "solid", "solid", "solid", "solid", "solid"),
+       lwd = c(8, 8, 8, 8, 8, 8, 8, 8),
+       bg = "white", title = "Legenda", cex = 0.5
+)
 
 dev.off()

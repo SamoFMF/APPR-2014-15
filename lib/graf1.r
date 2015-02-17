@@ -4,7 +4,7 @@ prvi.graf <- function() {
   attach(nutrition)
   y <- table(Calories.per.Serving.Size)
   
-  plot(c(0, 5), c(0, 41), type="n", xlab = "Kategorija \n (Glede na kalorije na velikost porcije)", ylab = "Stevilo jedi")
+  plot(c(0, 5), c(0, 41), type="n", xlab = "Kategorija \n (Glede na kalorije na velikost porcije)", ylab = "Število jedi")
   abline(h = 0)
   abline(v = 0)
   
@@ -30,7 +30,7 @@ prvi.graf <- function() {
 drugi.graf <- function() {
   attach(sestavine)
   y <- table(RAZVRSTITEV)
-  barplot(y, names.arg = rownames(y), col = c("grey", "#82c5dc", "red"), xlab = "Razvrstitev \n (Glede na stevilo sestavin iz seznama, ki so v jedi)", ylab = "Stevilo jedi")
+  barplot(y, names.arg = rownames(y), col = c("grey", "#82c5dc", "red"), xlab = "Razvrstitev \n (Glede na stevilo sestavin iz seznama, ki so v jedi)", ylab = "Število jedi")
   detach(sestavine)
 }
 
@@ -81,11 +81,16 @@ tretji.graf <- function() {
 # graf3 <- tretji.graf()
 # dev.off()
 
-pdf("slike/graf1.pdf")
-graf1 <- prvi.graf()
+# pdf("slike/graf1.pdf")
+# graf1 <- prvi.graf()
+# dev.off()
+
+# Drugače nam ne prikazuje črke "Č" pravilno, "Š" in "Ž" delata normalno
+cairo_pdf("slike/graf1.pdf", family="Courier New")
+graf_test <- prvi.graf()
 dev.off()
 
-pdf("slike/graf2.pdf")
+cairo_pdf("slike/graf2.pdf", family="Courier New")
 graf1 <- drugi.graf()
 dev.off()
 
