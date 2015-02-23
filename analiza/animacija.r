@@ -7,11 +7,11 @@ pdf("slike/animacija.pdf", width=6, height=4)
 plot(svet)
 title(main = "Države po datumih odprtja prve restavracije")
 legend("bottomleft",
-       legend = c("", "", "", "", "", "", ""),
+       legend = c("1940-1949", "", "", "", "", "", ""),
        col = c("white", "white", "white", "white", "white", "white", "white"),
        lty = c("solid", "solid", "solid", "solid", "solid", "solid", "solid"),
        lwd = c(8, 8, 8, 8, 8, 8, 8),
-       bg = "white", title = "Legenda", cex = 0.5
+       bg = "white", title = "Legenda", cex = 0.5, text.col = "white", title.col = "black"
 )
 
 # Prvo obdobje (1940)
