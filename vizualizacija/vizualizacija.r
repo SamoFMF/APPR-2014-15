@@ -56,6 +56,7 @@ print(spplot(svet[!USA,], "stevilo.trgovin", col.regions = topo.colors(100),
 
 dev.off()
 
+
 lokacije <- lokacije[order(as.Date(lokacije$Date, format="%d.%m.%Y", na.rm=TRUE)), ]
 ni.trgovin <- is.na(lokacije$Date)
 
@@ -103,6 +104,8 @@ slabe <- is.na(drzave$Area)
 levels(drzave$Area) <- c(levels(drzave$Area), 0)
 drzave$Area[slabe] <- 0
 lok1 <- lokacije[order(row.names(lokacije)), ]
+drzave$leto <- as.integer(format(as.Date(lok1$Date, "%d.%m.%Y"), "%Y"))
+drzave$leto[is.na(drzave$leto)] <- 9999
 
 vsa.imena <- (drzave$Area > 500000) & (lok1$Number.of.currently.operating.outlets > 0)
 koordinate <- drzave[vsa.imena, c("long", "lat")]
@@ -139,7 +142,7 @@ points(coordinates(imena[imena$Area<1000000, c("long", "lat")]),
        cex = 0.2)
 
 legend("bottomleft",
-       legend = c("1950-1959", "1960-1969", "1970-1979", "1980-1989", "1990-1999", "2000-2009", "2010-2015", "Še ni odprta"),
+       legend = c("1940-1949", "1960-1969", "1970-1979", "1980-1989", "1990-1999", "2000-2009", "2010-2015", "Še ni odprta"),
        col = c(rgb(1, 1, 0), rgb(1, 0, 1), rgb(1, 0.843137, 0), rgb(0.5, 0.5, 0), rgb(0, 0, 1), rgb(0, 1, 0), rgb(1, 0, 0), "black"),
        lty = c("solid", "solid", "solid", "solid", "solid", "solid", "solid", "solid"),
        lwd = c(8, 8, 8, 8, 8, 8, 8, 8),
