@@ -11,6 +11,6 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 
 # 4. faza: Napredna analiza podatkov
 source("analiza/animacija.r", encoding="UTF-8")
-#source("analiza/analiza.r")
+source("analiza/analiza.r", encoding="UTF-8")
 
 cat("Končano.\n")
