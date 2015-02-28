@@ -34,6 +34,35 @@ Na koncu je sledil še uvoz podatkov iz Wikipedije, kjer sem dobil podatke o dr�
 
 \newpage
 
+\section{Podatki}
+
+V tem razdelku bom predstavil podatke oz. tabele, ki sem jih uporabljal pri izdelovanju projekta ter tudi pokazal skrčene verzije le-teh.
+
+\subsection{Tabela - lokacije}
+\includegraphics[width=\textwidth]{../slike/tabela_lokacije.pdf}
+
+Prikazana tabela prikazuje prvih 40 vrstic tabele, ki je bila uvožena iz Wikipedije. Na njej lahko vidimo, da ima v row.names zabeležene države, v drugem stolpcu so mesta, kjer se
+je McDonalds v tisti državi prvotno odprl, v četrtem stolpcu pa še datum le-tega odprtja. Tretji stolpec prikazuje število trenutno obratujočih McDonaldsov v državi. \par
+
+Tabela je urejena po datumih, ki pa so zapisani v nam domači obliki. Pravtako tretji stolpec prvotno niso bila le števila, temveč kakšni znaki ter tudi besede, ki pa sem jih nato odstranil.
+
+\subsection{Tabela - hranilne vrednosti}
+\includegraphics[width=\textwidth]{../slike/tabela_nutrition.pdf}
+
+Prikazana tabela je del tabele, ki sem jo uporabil za pridobitev vseh potrebnih podatkov o hranilnih vrednostih jedi, ki jih nudijo. Tukaj prikazujem le prvih 30 jedi ter samo prve in zadnje 3 stolpce, medtem ko je prvotna tabela hranilnih vrednosti dimenzij $54\times24$, izpuščeni stolpci pa so vsi številske vrednosti raznih hranilnih vrednosti jedi. \par
+
+Zadnji stolpec prikazuje razvrstitev v eno izmed kategorij: $$\mbox{najmanjše} < \mbox{nizko} < \mbox{srednje} < \mbox{visoko} < \mbox{največje}$$
+Tukaj gre za urejenostno spremenljivko. Kategorija je dodeljena glede na razmerje med kalorijami jedi ter velikostjo njene porcije v gramih.
+Prvi stolpec vsebuje imenske spremenljivke, preostali pa številske.
+
+\subsection{Tabela - sestavine}
+\includegraphics[width=\textwidth]{../slike/tabela_sestavine.pdf}
+
+Zadnja tabela je skrčitev tabele o sestavinah jedi. Prvotna tabela je dimenzij $16 \times 9$, kjer so male dimenzije posledica izbire tabele. Ker so skupne sestavine jedi precej redke, sem moral izbrati takšne jedi in sestavine, ki imajo vsaj nekaj skupnih elementov. Tako prvi stolpec prikazuje ime jedi, predzadnji število sestavin, ki so v tabeli in jih jed vsebuje, zadnji stolpec pa je urejenostna spremenljivka glede na predzadnji stolpec in lahko zasede vrednosti: $$\mbox{podpovprečno} < \mbox{povprečno} < \mbox{nadpovprečno}$$
+Ostali stolpci zavzemajo vrednosti \verb|TRUE/FALSE|, glede na to, če vsebuje jed le-to sestavino ali ne.
+
+\newpage
+
 \section{Analiza in vizualizacija podatkov}
 
 
