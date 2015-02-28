@@ -16,69 +16,94 @@ Analiza podatkov s programom R}
 \author{Samo Metličar}
 \maketitle
 
+\newpage
 \section{Izbira teme}
 
-Za temo sem izbral McDonald's, obravnaval pa bom njihovo ponudbo, raz\-šir\-je\-nost ter delovanje podjetja samega.
+Za temo sem izbral \textit{McDonald's}, obravnaval pa bom njihovo ponudbo ter raz\-šir\-je\-nost podjetja po svetu.
 
 \section{Obdelava, uvoz in čiščenje podatkov}
 
-Iz \href{http://nutrition.mcdonalds.com/getnutrition/nutritionfacts.pdf}{McDonalds Nutrition Facts} sem dobil prvo tabelo, ki vsebuje hranilne vrednosti njihovih jedi. Datoteka je bila v PDF formatu ter večina imen je bila več-vrstičnih, kar je povzročalu probleme tako Excelu kot Wordu. Ko sem prenesel vse podatke v Excel, sem shranil tabelo kot CSV datoteko v \verb|podatki/nutrition.csv|. Nato sem se lotil druge tabele, ki sem jo pridobil iz \href{http://nutrition.mcdonalds.com/getnutrition/ingredientslist.pdf}{McDonalds Ingredient List}. Ta tabela mi je povzročala malce več težav in po predlogu asistenta sem se odločil, da jo bom pretvoril v \verb|TRUE/FALSE| tabelo, kar sem storil s pomocjo R. Ker pa se vecina jedi ne pojavla pogosto, sem moral močno zožiti izbor jedi, zato je tabela manjših razsegov. \par
+\subsection{Potek dela}
 
-Obe tabeli sem uvozil s funkcijama v \verb|uvoz/uvoz.r| ter ju na to s funkcijami v \verb|lib/tabeli.r| še dopolnil ter pretvoril v željeni tabeli. Sledilo je ustvarjanje grafov s pomočjo funkcij v \verb|lib/graf1.r|, ki izriše vse tri grafe v PDF dokument \verb|slike/grafi.pdf|. \par
+Iz \href{http://nutrition.mcdonalds.com/getnutrition/nutritionfacts.pdf}{McDonalds Nutrition Facts} sem dobil prvo tabelo, ki vsebuje hranilne vrednosti njihovih jedi. Datoteka je bila v PDF formatu ter večina imen je bila več-vrstičnih, kar je povzročalo probleme tako Excelu kot Wordu. Ko sem prenesel vse podatke v Excel, sem shranil tabelo kot \verb|CSV| datoteko v \verb|podatki/nutrition.csv|. Nato sem se lotil druge tabele, ki sem jo pridobil iz \href{http://nutrition.mcdonalds.com/getnutrition/ingredientslist.pdf}{McDonalds Ingredient List}. Ta tabela mi je povzročala malce več težav in po predlogu asistenta sem se odločil, da jo bom pretvoril v \verb|TRUE/FALSE| tabelo, kar sem storil s pomocjo R. Ker pa se vecina jedi ne pojavla pogosto, sem moral močno zožiti izbor jedi, zato je tabela manjših razsegov. \par
 
-Na koncu je sledil še uvoz podatkov iz Wikipedije, kjer sem dobil podatke o državah, kjer McDonalds obratuje itd. Po uvozu teh podatkov sem še nekoliko uredil tabelo ter spremenil nekatere vrednosti. Na koncu pa sem še pretvoril datume iz niza v \verb|Date| ter jih izpisal v nam bolj prijazni oblik.
+Obe tabeli sem uvozil s funkcijama v \verb|uvoz/uvoz.r| ter ju na to s funkcijami v \verb|lib/tabeli.r| še dopolnil ter pretvoril v željeni tabeli. Sledilo je ustvarjanje grafov s pomočjo funkcij v \verb|lib/graf1.r|, ki izriše vse tri grafe v \verb|PDF| dokumente \verb|slike/graf1.pdf|, \verb|slike/graf2.pdf| ter \verb|slike/graf3.pdf|. \par
 
-\includegraphics[width=\textwidth]{../slike/graf1.pdf}
-\includegraphics[width=\textwidth]{../slike/graf2.pdf}
-\includegraphics[width=\textwidth]{../slike/graf3.pdf}
+Na koncu je sledil še uvoz podatkov iz Wikipedije, kjer sem dobil podatke o državah, kjer McDonalds obratuje itd. Po uvozu teh podatkov sem še nekoliko uredil tabelo ter spremenil nekatere vrednosti. Na koncu pa sem še pretvoril datume iz niza v \verb|Date| ter jih izpisal v nam bolj prijazno obliko.
 
-\newpage
-
-\section{Podatki}
+\subsection{Uvoženi podatki}
 
 V tem razdelku bom predstavil podatke oz. tabele, ki sem jih uporabljal pri izdelovanju projekta ter tudi pokazal skrčene verzije le-teh.
 
-\subsection{Tabela - lokacije}
+\newpage
+% Preko figure bi lahko dodal caption ter label, da bi se potem referrencale tabele
+\subsubsection{Tabela - lokacije}
+\vspace{5mm}
 \includegraphics[width=\textwidth]{../slike/tabela_lokacije.pdf}
+\vspace{5mm}
 
 Prikazana tabela prikazuje prvih 40 vrstic tabele, ki je bila uvožena iz Wikipedije. Na njej lahko vidimo, da ima v row.names zabeležene države, v drugem stolpcu so mesta, kjer se
 je McDonalds v tisti državi prvotno odprl, v četrtem stolpcu pa še datum le-tega odprtja. Tretji stolpec prikazuje število trenutno obratujočih McDonaldsov v državi. \par
 
 Tabela je urejena po datumih, ki pa so zapisani v nam domači obliki. Pravtako tretji stolpec prvotno niso bila le števila, temveč kakšni znaki ter tudi besede, ki pa sem jih nato odstranil.
 
-\subsection{Tabela - hranilne vrednosti}
+\subsubsection{Tabela - hranilne vrednosti}
+\vspace{5mm}
 \includegraphics[width=\textwidth]{../slike/tabela_nutrition.pdf}
+\vspace{5mm}
 
-Prikazana tabela je del tabele, ki sem jo uporabil za pridobitev vseh potrebnih podatkov o hranilnih vrednostih jedi, ki jih nudijo. Tukaj prikazujem le prvih 30 jedi ter samo prve in zadnje 3 stolpce, medtem ko je prvotna tabela hranilnih vrednosti dimenzij $54\times24$, izpuščeni stolpci pa so vsi številske vrednosti raznih hranilnih vrednosti jedi. \par
+Prikazana tabela je del tabele, ki sem jo uporabil za pridobitev vseh potrebnih podatkov o hranilnih vrednostih jedi, ki so na meniju. Tukaj prikazujem le prvih 30 jedi ter samo prve in zadnje 3 stolpce, medtem ko je prvotna tabela hranilnih vrednosti dimenzij $54\times24$, izpuščeni stolpci pa so vsi številske vrednosti raznih hranilnih vrednosti jedi. \par
 
 Zadnji stolpec prikazuje razvrstitev v eno izmed kategorij: $$\mbox{najmanjše} < \mbox{nizko} < \mbox{srednje} < \mbox{visoko} < \mbox{največje}$$
 Tukaj gre za urejenostno spremenljivko. Kategorija je dodeljena glede na razmerje med kalorijami jedi ter velikostjo njene porcije v gramih.
 Prvi stolpec vsebuje imenske spremenljivke, preostali pa številske.
 
-\subsection{Tabela - sestavine}
+\subsubsection{Tabela - sestavine}
+\vspace{5mm}
 \includegraphics[width=\textwidth]{../slike/tabela_sestavine.pdf}
+\vspace{5mm}
 
 Zadnja tabela je skrčitev tabele o sestavinah jedi. Prvotna tabela je dimenzij $16 \times 9$, kjer so male dimenzije posledica izbire tabele. Ker so skupne sestavine jedi precej redke, sem moral izbrati takšne jedi in sestavine, ki imajo vsaj nekaj skupnih elementov. Tako prvi stolpec prikazuje ime jedi, predzadnji število sestavin, ki so v tabeli in jih jed vsebuje, zadnji stolpec pa je urejenostna spremenljivka glede na predzadnji stolpec in lahko zasede vrednosti: $$\mbox{podpovprečno} < \mbox{povprečno} < \mbox{nadpovprečno}$$
-Ostali stolpci zavzemajo vrednosti \verb|TRUE/FALSE|, glede na to, če vsebuje jed le-to sestavino ali ne.
+Ostali stolpci zavzemajo vrednosti \verb|TRUE/FALSE|, glede na to, če vsebuje jed le-to sestavino ali ne. \par
+
+\newpage
+\subsection{Izdelani grafi}
+Tukaj bom na kratko predstavil grafe, ki sem jih v tej fazi izrisal.
+
+\subsubsection{Prvi graf}
+\includegraphics[width=\textwidth]{../slike/graf1.pdf}
+Ta graf prikazuje, koliko jedi pade v katero izmed kategorij tabele o \verb|hranilnih|  \verb|vrednostih| ter nam pokaže razporeditev le-teh.
+
+\subsubsection{Drugi graf}
+\includegraphics[width=\textwidth]{../slike/graf2.pdf}
+Tukaj sem s pomočjo funkcije \verb|barplot| prikazal, podobno kot pri prvem grafu za tabelo o \verb|hranilnih vrednostih|, porazdelitev jedi v kategorije iz tabele \verb|sestavine|.
+
+\subsubsection{Tretji graf}
+\includegraphics[width=\textwidth]{../slike/graf3.pdf}
+Ta graf prikazuje tri manjše skupine jedi ter njihove kalorične vrednosti. Prvih šest elementov prikazuje jedi z najmanjšimi kaloričnimi vrednostmi, naslednjih pet s srednjimi ter zadnjih pet z največjimi. Podatki so vzeti iz tabele o \verb|hranilnih vrednostih|.
 
 \newpage
 
 \section{Analiza in vizualizacija podatkov}
 
 
-V tretji fazi sem uvozil zemljevid sveta s spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}, ki jo je svetoval asistent ter se lotil spreminjanja tabel, ki so mi bile na voljo, da so ustrezale le-temu zemljevidu. V \verb|lib/uvozi.zemljevid.r| najdemo program, ki nam uvozi le-tega. \par
+V tretji fazi sem uvozil zemljevid sveta s spletne strani \href{http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip}{Natural Earth Data}, ki jo je svetoval asistent, ter se lotil spreminjanja tabel, ki so mi bile na voljo, da so ustrezale le-temu zemljevidu. V \verb|lib/uvozi.zemljevid.r| najdemo program, ki nam uvozi le-tega. \par
 
-Nato pa sem program \verb|vizualizacija/vizualizacija.r| spremenil ter dodelal, da shrani zemljevid s spleta ter ga preuredi v dva zemljevida. Prvi prikazuje, koliko McDonaldsov je v posameznih državah po svetu, drugi pa kdaj je bila odprta prva restavracija v tisti državi.
-
-Prvo sem se lotil števila restavracij po državah, tako da sem popravil ter uskladil imena z zemljevida ter mojih podatkov, da sta se ujemala v številu držav, kot tudi katere sta vsebovala. Nato pa sem izrisal graf s funkcijo \verb|spplot|. \par
-
-Za drug zemljevid sem podatke uredil po datumih ter jim po desetletjih dodelil barve, po letnicah znotraj desetletja pa \verb|transparency|. Nato pa sem želel dodati še imena nekaterih največjih držav, kjer McDonalds posluje ter jih tudi označiti, zato sem na spletu poiskal \href{https://developers.google.com/public-data/docs/canonical/countries_csv}{koordinate središč držav} ter \href{http://simple.wikipedia.org/wiki/List_of_countries_by_area}{njihove površine}. Oba seznama sem pretvoril ter naložil, kot \verb|.CSV| datoteki ter ju uvozil v moj program. Podatke sem uredil, tako da so se ujemali s seznamom držav iz zemljevida ter prejšnjimi podatki ter ustvaril seznam imen ter koordinat, ki sem jih želel izpisati. Za največje države sem izpisal celotno ime, medtem ko sem za manjše izpisal kratico ali pa jo samo označil s krogcem. Zemljevid sem nato izrisal v \verb|.PDF| obliki. \par
-
-V tej fazi mi povzroča probleme predvsem \verb|spplot|, ki ga ne želi zapisati v \verb|.PDF|, razen če se še posebaj zaženejo tiste vrstice. \newpage
-
+Nato pa sem skripto \verb|vizualizacija/vizualizacija.r| spremenil ter dodelal, da shrani zemljevid s spleta ter ga preuredi v dva zemljevida. Prvi prikazuje, koliko McDonaldsov je v posameznih državah po svetu, drugi pa kdaj je bila odprta prva restavracija v tisti državi. \par
+\vspace{1em}
+\noindent
+Prvo sem se lotil števila restavracij po državah, tako da sem popravil ter uskladil imena z zemljevida ter mojih podatkov, da sta se ujemala v številu držav, kot tudi katere sta vsebovala. Nato pa sem izrisal graf s funkcijo \verb|spplot|. Barvo za ZDA sem določil posebaj, saj je vrednost preveč odstopala od ostalih podatkov. Samo število pa sem zapisal na zemljevid. Izrisal sem ga v \verb|slike/zemljevid1.pdf|. \par
+\vspace{1em}
+\noindent
+Za drug zemljevid sem podatke uredil po datumih ter jim po desetletjih dodelil barve, po letnicah znotraj desetletja pa \verb|transparentnost|. Nato pa sem želel dodati še imena nekaterih največjih držav, kjer McDonalds posluje ter jih tudi označiti, zato sem na spletu poiskal \href{https://developers.google.com/public-data/docs/canonical/countries_csv}{koordinate središč držav} ter \href{http://simple.wikipedia.org/wiki/List_of_countries_by_area}{njihove površine}. Oba seznama sem pretvoril ter naložil, kot \verb|CSV| datoteki ter ju uvozil v moj program. Podatke sem uredil, tako da so se ujemali s seznamom držav iz zemljevida ter prejšnjimi podatki ter ustvaril seznam imen ter koordinat, ki sem jih želel izpisati. Za največje države sem izpisal celotno ime, medtem ko sem za manjše izpisal kratico ali pa jo samo označil s krogcem. Zemljevid sem nato izrisal v \verb|PDF| obliki v \verb|slike/zemljevid2.pdf|. \par
+\vspace{1em}
+\noindent
+\textit{Slike zemljevidov so na zadnjih straneh, pred animacijo.}
+ 
 \begin{sidewaysfigure}[ht]
 	\includegraphics[width=\textwidth]{../slike/zemljevid1.pdf}
 \end{sidewaysfigure}
+
 
 
 \begin{sidewaysfigure}[ht]
@@ -89,8 +114,37 @@ V tej fazi mi povzroča probleme predvsem \verb|spplot|, ki ga ne želi zapisati
 
 \section{Napredna analiza podatkov}
 
-\begin{center}
-\animategraphics[controls, loop, width=1.2\linewidth]{1}{../slike/animacija}{}{}
-\end{center}
+Moj prvi korak zadnje faze je bil izdelava animacije, ki prikazuje po desetletjih širjenje McDonaldsa po svetu. Prvo rdeče obarva vse države, ki so v tistem desetletju prvič odprle njihovo restavracijo, nato pa s prehodom na naslednje desetletje obarva le-te države v barve iz drugega zemljevida, ki sem ga izdelal v prejšnji fazi (vsako desetletje ima svojo barvo, leto v desetletju pa določi transparentnost), ter večje države označi ali pa izpiše njihovo ime, nove države pa ponovno obarva rdeče. Vse to lahko tudi spremljamo preko legende, ki nam pove v katerem desetletju smo in kako je katero obarvano. \par
+Tega koraka sem se lotil tako, da sem prvo dodal na že obstoječe tabele še stolpec, ki je numerično prikazoval leto odprtja prve restavracije v državi. Tako sem si poenostavil razvrščanje držav v skupine ter jih nato lažje sortiral ter dodal na končne zemljevide. Le-teh je devet, kjer sta prvi in zadnji prazen oz. dokončen, vmesni pa prikazujejo nove države v pripadajočih desetletjih. Vse skupaj sem shranil v \verb|slike/animacija.pdf| ter nato s pomočjo funkcije \verb|animategraphics| spremenil v animacijo v programu \LaTeX. \par
+\vspace{1em}
+\noindent
+Nato sem se še lotil grupiranja podatkov iz tabele o \verb|hranilnih vrednostih|. Tukaj sem si prvo definiral novo tabelo \verb|podatki|, ki je iz tabele \verb|hranilne| \verb|vrednosti| odstranila neštevilske ter neuporabne stolpce. Nato sem jo normaliziral ter grupiral v šest skupin ter minimiziral vsoto kvadratov odstopanj znotraj skupin ter tako dobil najboljšo razdelitev. \par
+Preko funkcije \verb|pairs| sem nato poiskal osamelec ter ga kasneje tudi odstranil iz podatkov. Iz dobljene tabele sem narisal dva grafa.
+
+\subsection{Prvi graf}
+\includegraphics[width=\textwidth]{../slike/grupiranje1.pdf}
+Ta graf nam prikazuje porazdelitev jedi glede na kalorije v odvisnosti od velikosti porcije (g) le-te. Jedi iz iste grupe so obarvane z isto barvo, uporabljene barve pa so rdeča, zelena, modra, črna, rumena ter zlata.
+
+\subsection{Drugi graf}
+\includegraphics[width=\textwidth]{../slike/grupiranje2.pdf}
+Tukaj pa imamo prikazane kalorije iz maščob v odvisnosti od skupnih kalorij jedi.
+
+\begin{figure}
+	\animategraphics[controls, loop, width=1.2\linewidth]{1}{../slike/animacija}{}{}
+\end{figure}
+
+\newpage
+\section{Izdelava tabel za prikaz v PDF obliki}
+
+Zadnja skripta, ki sem jo še ustvaril, je \verb|izpis_tabel.r|, ki pretvori začetne tabele:
+
+\begin{itemize}
+	\item \verb|hranilne vrednosti|
+	\item \verb|sestavine|
+	\item \verb|lokacije|
+\end{itemize}
+
+\noindent
+v skrčene verzije le-teh. Pri vsaki vzame samo stolpec imen ter prve in zadnje tri stolpce podatkov ter tudi zmanjša število vrstic, da jih je lažje predstaviti v poročilu. Nato še vse te tabele s pomočjo funkcij \verb|cairo_pdf| ter \verb|grid.table| in knjižnice \verb|gridExtra| zapiše v \verb|PDF| format, da se jih lahko uvozi v \LaTeX.
 
 \end{document}

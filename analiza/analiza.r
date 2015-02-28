@@ -16,17 +16,7 @@
 #      ylab = "Št. naselij")
 # dev.off()
 
-podatki <- nutrition
-podatki$Part.of.Daily.Value <- NULL
-podatki$Part.of.Daily.Value.1 <- NULL
-podatki$Part.of.Daily.Value.2 <- NULL
-podatki$Part.of.Daily.Value.3 <- NULL
-podatki$Part.of.Daily.Value.4 <- NULL
-podatki$Part.of.Daily.Value.5 <- NULL
-podatki$Calories.per.Serving.Size <- NULL
-podatki$Dietary.Fiber..g. <- NULL
-podatki$Trans.Fat..g. <- NULL
-podatki$Saturated.Fat..g. <- NULL
+podatki <- nutrition[, -c(6, 7, 8, 9, 11, 13, 15, 16, 17, 24)]
 
 podatki <- podatki[-(48:54),]
 row.names(podatki) <- podatki$Jed
@@ -38,17 +28,23 @@ k <- kmeans(skalar1, 6, nstart=1000)
 kat <- k$cluster
 barve <- c("red", "green", "blue", "yellow", "gold", "black")
 
-# Uporabimo pairs
-# pairs(skalar1, col = barve[kat])
-# Vidimo, da je modro obarvan element samo eden (table(k$cluster)), ki je pa tudi osamelec
-# Z row.names(skalar1)[kat %in% 3] dobimo ime osamelca
-# Ime je "Double Quarter Pounder with Cheese ++"
-# pairs(skalar1[!(kat %in% 3),], col=barve[kat[!(kat %in% 3)]])
-# Vidimo, da razen pri Vitamin A, ki ga ne bomo uporabili, več ni osamelcev
-# Prvotni osamelec nato odstranimo
 
-kat <- kat[!(row.names(podatki) == "Double Quarter Pounder with Cheese ++")]
-podatki <- podatki[!(row.names(podatki) == "Double Quarter Pounder with Cheese ++"), ]
+# Uporabimo pairs
+pdf("slike/pairs1.pdf")
+pairs(skalar1, col = barve[kat])
+dev.off()
+# Vidimo, da imamo osamelec, ki ga lahko dobimo z naslednjo funkcijo
+os_st <- as.integer(row.names(table(k$cluster))[table(k$cluster) == 1]) # Vrne grupo osamelca v tem primeru
+os <- row.names(skalar1)[kat %in% os_st] # Ime osamelca
+# Pogledamo pairs brez le-tega
+pdf("slike/pairs2.pdf")
+pairs(skalar1[!(kat %in% os_st), ], col = barve[kat[!(kat %in% os_st)]])
+dev.off()
+# Osamelcev več ni v podatkih, ki jih bomo uporabili
+# Prvotni osamelec nato odstranimo iz podatkov
+
+podatki <- podatki[!(kat %in% os_st), ]
+kat <- kat[!(kat %in% os_st)]
 
 pdf("slike/grupiranje1.pdf")
 
