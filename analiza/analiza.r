@@ -46,6 +46,7 @@ dev.off()
 podatki <- podatki[!(kat %in% os_st), ]
 kat <- kat[!(kat %in% os_st)]
 
+cat("Rišem grafa grupiranj...\n")
 pdf("slike/grupiranje1.pdf")
 
 plot(podatki[, "Serving.Size..g."], podatki[, "Calories"],
@@ -65,3 +66,49 @@ plot(podatki$Calories, podatki$Calories.From.Fat,
      main = "Razmerje med celotnimi kalorijami in kalorijami iz maščob")
 
 dev.off()
+
+# Poizkusimo poizkati najboljše prileganje in napovedovanje proteinov v jedi ob znani količini natrija.
+
+attach(podatki)
+
+cat("Rišem graf napovedi...\n")
+pdf("slike/napoved.pdf")
+plot(Calories, Calories.From.Fat, xlab = "Kalorije", ylab = "Kalorije iz maščob")
+lin <- lm(Calories.From.Fat ~ Calories)
+kv <- lm(Calories.From.Fat ~ I(Calories^2) + Calories)
+# z <- lowess(Calories, Calories.From.Fat)
+mls <- loess(Calories.From.Fat ~ Calories)
+abline(lin, col = "blue")
+curve(predict(kv, data.frame(Calories=x)), add = TRUE, col = "red")
+# lines(z, col = "green")
+curve(predict(mls, data.frame(Calories=x)), add = TRUE, col = "green")
+
+legend("bottomright",
+       legend = c("Kvadratni", "Linearni", "Loess"),
+       col = c("red", "blue", "green"),
+       lty = c("solid", "solid", "solid"),
+       bg = "white")
+dev.off()
+
+# Ocenimo napako
+vs_kvadratov <- sapply(list(lin, kv, mls), function(x) sum(x$residuals^2))
+# Vidimo, da je najnatančnejši mls model, sledi mu kvadratni
+
+# Sestavimo sedaj tabelo, ki bo napovedala za število kalorij pripadajočo vrednost kalorij iz maščob
+
+kv_napoved1 <- predict(kv, data.frame(Calories=seq(40, 140, 50)))
+mls_napoved <- predict(mls, data.frame(Calories=seq(min(Calories), max(Calories), 50)))
+kv_napoved2 <- predict(kv, data.frame(Calories=seq(max(Calories)+50, 1500, 50)))
+napoved <- c(kv_napoved1, mls_napoved, kv_napoved2)
+
+tabela_napovedi <- data.frame(Kalorije = seq(40, 1500, 50), Kalorije.iz.mascob = napoved)
+a <- c(540, 240, 290, 340, 440, 590, 390, 190)
+b <- c(225, 70, 100, 400/3, 200, 230, 170, 110)
+b <- b[order(a)]
+a <- sort(a)
+attach(tabela_napovedi)
+tabela_napovedi$tocna.vrednost <- "ni podatka"
+tabela_napovedi$tocna.vrednost[Kalorije %in% a] <- b
+detach(tabela_napovedi)
+
+detach(podatki)

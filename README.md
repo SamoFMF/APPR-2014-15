@@ -31,6 +31,8 @@ napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
 
 Zaženemo datoteko `projekt.r` v RStudio ter poženemo program. Izvedle se bodo vse funkcije in dobili bomo tri tabele ter tri grafe (shranjene v `slike/graf1.pdf`, `slike/graf2.pdf`, `slike/graf3.pdf`) ter zemljevid (shranjen v `slike/zemljevid2.pdf`), da dobimo še drugi zemljevid moramo označiti vrstice 11-15 ter klikniti `Run` (shrani se nam v `slike/zemljevid1.pdf`).
 
+Nujno si prenesite sliko iz http://www2.pef.uni-lj.si/kemija/profiles/images/uni-lj.png ter jo shranite v ../slike/uni-lj.png, saj drugače ne bo prva stran poročila vsebovale logotipa univerze.
+
 ## Program
 
 Glavni program se nahaja v datoteki `projekt.r`. Ko ga poženemo, se izvedejo
