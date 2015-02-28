@@ -1,0 +1,23 @@
+\select@language {slovene}
+\contentsline {section}{\numberline {1}Izbira teme}{2}{section.1}
+\contentsline {section}{\numberline {2}Obdelava, uvoz in \IeC {\v c}i\IeC {\v s}\IeC {\v c}enje podatkov}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Potek dela}{2}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Uvo\IeC {\v z}eni podatki}{2}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Tabela - lokacije}{3}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Tabela - hranilne vrednosti}{4}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Tabela - sestavine}{5}{subsubsection.2.2.3}
+\contentsline {subsection}{\numberline {2.3}Izdelani grafi}{6}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Prvi graf}{6}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Drugi graf}{7}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Tretji graf}{8}{subsubsection.2.3.3}
+\contentsline {section}{\numberline {3}Analiza in vizualizacija podatkov}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Prvi zemljevid}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Drugi zemljevid}{9}{subsection.3.2}
+\contentsline {section}{\numberline {4}Napredna analiza podatkov}{10}{section.4}
+\contentsline {subsection}{\numberline {4.1}Animacija}{10}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Grupiranje podatkov}{10}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}Prvi graf}{11}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}Drugi graf}{12}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Napoved vrednosti}{13}{subsection.4.3}
+\contentsline {section}{\numberline {5}Izdelava tabel za prikaz v PDF obliki}{15}{section.5}
+\contentsline {section}{\numberline {6}Literatura}{16}{section.6}
