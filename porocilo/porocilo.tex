@@ -168,7 +168,8 @@ Tega koraka sem se lotil tako, da sem prvo dodal na že obstoječe tabele še st
 
 \subsection{Grupiranje podatkov}
 Nato sem se še lotil grupiranja podatkov iz tabele o \verb|hranilnih vrednostih|. Tukaj sem si prvo definiral novo tabelo \verb|podatki|, ki je iz tabele \verb|hranilne| \verb|vrednosti| odstranila neštevilske ter neuporabne stolpce. Nato sem jo normaliziral ter grupiral v šest skupin ter minimiziral vsoto kvadratov odstopanj znotraj skupin ter tako dobil najboljšo razdelitev. \par
-Preko funkcije \verb|pairs| sem nato poiskal osamelec ter ga kasneje tudi odstranil iz podatkov. Iz dobljene tabele sem narisal dva grafa.
+Preko funkcije \verb|pairs| sem nato poiskal osamelec ter ga kasneje tudi odstranil iz podatkov. Iz dobljene tabele sem narisal dva grafa. \par
+Za osamelec se je izkazalo, da gre za jed, ki dosega ekstremno visoke hranilne vrednosti \textit{(kalorije, maščobe, sladkor, ...)} in zato samo moti podatke. Na drugi strani pa vidimo, da so v skupini zelo podobne jedi, ki imajo posledično tudi zelo podobne hranilne vrednosti \textit{(večina McWrapov je naprimer v eni ali dveh skupinah, v ostalih pa jih ne najdemo)}, tako da ugotovimo, da so jedi zelo dobro razvrščene v skupine, znotraj katerih so si hranilne vrednosti zelo blizu.
 
 \subsubsection{Prvi graf}
 \includegraphics[width=\textwidth]{../slike/grupiranje1.pdf}
